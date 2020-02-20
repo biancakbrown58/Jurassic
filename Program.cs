@@ -19,7 +19,7 @@ namespace Jurassic
           Console.WriteLine($"{dino.DinoName.ToUpper()} - DIET: {dino.DinoDietType} - WEIGHT: {dino.Weight} - Enclosure #: {dino.EnclosureNumber} - Added On: {dino.DateAcquired} "); //their weight is {dino.Weight} they came in on {dino.DateAcquired} they currently in {dino.EnclosureNumber}");
         }
         Console.WriteLine("Want would you like to do?");
-        Console.WriteLine("(Add) (Remove) (Move NO) (View Diet Count NO) (Quit)");
+        Console.WriteLine("(Add) (Remove) (Move) (Diet) (Heaviest) (Quit)");
         var input = Console.ReadLine().ToLower();
         if (input == "add")
         {
@@ -45,24 +45,23 @@ namespace Jurassic
           var creature = Console.ReadLine();
           tracker.RemoveDinosaur(creature);
         }
-        // else if (input == "move")
-        // {
-        //   Console.WriteLine("Who do you want to move");
-        //   var home = Console.ReadLine();
-        //   tracker.MoveDinosaur(home);
-        // }
-        // else if (input == "view diet")
-        // {
-        //   Console.WriteLine("count")
+        else if (input == "move")
+        {
+          Console.WriteLine("Who do you want to move");
+          var dino = Console.ReadLine();
+          Console.WriteLine("Which pen?");
+          var newPen = Console.ReadLine();
+          tracker.MoveDinosaur(dino, newPen);
+        }
+        else if (input == "diet")
+        {
+          tracker.ViewDietType();
+        }
+        else if (input == "heaviest")
+        {
+          tracker.GetThreeHeaviest();
+        }
 
-
-        //   var userInput = Console.ReadLine().ToLower();
-        //   if (userInput == "carnivore")
-        //   {
-        //     dietType = dino.DinoDietType;
-        //     Console.WriteLine($"there are {dietType}");
-        //   }
-        // }
         else if (input == "quit")
         {
           isRunning = false;

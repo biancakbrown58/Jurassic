@@ -41,41 +41,34 @@ namespace Jurassic
       }
     }
 
-    // public void MoveDinosaur(string name)
-    // // DOESNT WORK YET! UGH
-    // {
-    //   var thingToMove = Dinosaurs.IndexOf(Dinosaurs => Dinosaurs.DinoName.Contains(name)));
-    //   //if (thingToMove.Count() > 1)
-    //   //{
-    //   //Console.WriteLine($"There are multiple {name}'s, who do you want to move?");
-    //   // for (int i = 0; i < thingToMove.Count; i++)
-    //   // {
-    //   //   var home = thingToMove[i];
-    //   //   Console.WriteLine($"{i + 1}: {home.DinoName} in {home.EnclosureNumber}");
-    //   // }
-    //   // var index = int.Parse(Console.ReadLine());
-    //   Console.WriteLine("Where do you want to move them? enter a number");
-    //   var newEnclosure = Console.ReadLine();
-    //   Dinosaurs[thingToMove].EnclosureNumber = newEnclosure;
-    //   //  Dinosaurs.Remove(thingToMove[index - 1]);
-    //   // }
+    public void MoveDinosaur(string who, string pen)
+    {
+      var dino = Dinosaurs.First(dinosaur => dinosaur.DinoName == who);
+      dino.EnclosureNumber = int.Parse(pen);
+    }
+
+    public void ViewDietType()
+    {
+      var vegDino = Dinosaurs.Count(dinosaur => dinosaur.DinoDietType.Contains("herbivore"));
+      Console.WriteLine($"There are {vegDino} Herbivores");
+
+      var carnDino = Dinosaurs.Count(dinosaur => dinosaur.DinoDietType.Contains("carnivore"));
+      Console.WriteLine($"There are {carnDino} carnivores");
+
+
+    }
+
+    public void GetThreeHeaviest()
+    {
+      var heaviest = Dinosaurs.OrderByDescending(dinosaur => dinosaur.Weight).Take(3);
+      foreach (var dino in heaviest)
+      {
+        Console.WriteLine($"{dino.DinoName} with a weight of {dino.Weight}");
+      }
+    }
+
   }
-
-  // public void ViewDietType(string dietType)
-  // {
-  //   // DOESNT WORK!!
-
-  //   //loop through the list of diet types and select the ones for separate 
-  //   // category and get the total 
-  //   Console.WriteLine("Enter 'carnivore' or 'herbivore' to see the total # of dinosaurs for that diet type");
-  //   var userInput = Console.ReadLine();
-  //   var viewDietTotal = Dinosaurs.Count(dinosaur => dinosaur.DinoDietType.Contains(userInput));
-
-  //   if (userInput == "carnivore")
-  //   {
-  //     Console.WriteLine($"The total carnivores are {viewDietTotal}");
-  //   }
-
-  // }
 }
+
+
 
